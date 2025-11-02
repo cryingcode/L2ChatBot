@@ -1,9 +1,9 @@
-import { useForm } from 'react-hook-form';
-import { Button } from './ui/button';
-import { FaArrowUp } from 'react-icons/fa';
 import axios from 'axios';
 import { useRef, useState } from 'react';
-import type { C } from 'node_modules/tailwindcss/dist/types-WlZgYgM8.d.mts';
+import ReactMarkdown from 'react-markdown';
+import { useForm } from 'react-hook-form';
+import { FaArrowUp } from 'react-icons/fa';
+import { Button } from './ui/button';
 
 type FormData = {
    prompt: string;
@@ -54,7 +54,7 @@ const ChatBot = () => {
                         : 'bg-gray-100 text-black self-start'
                   }`}
                >
-                  {message.content}
+                  <ReactMarkdown>{message.content}</ReactMarkdown>
                </p>
             ))}
          </div>
