@@ -1,9 +1,12 @@
 import OpenAI from 'openai';
 import { conversationRepository } from '../repositories/conversation.repository';
+import promptTemplate from '../prompts/chatbotPromptTemplate.txt';
 
 const client = new OpenAI({
    apiKey: process.env.OPENAI_API_KEY,
 });
+
+const instructions = promptTemplate; // set context window pre-amble
 
 type ChatResponse = {
    id: string;
@@ -17,6 +20,7 @@ export const chatService = {
    ): Promise<ChatResponse> {
       const response = await client.responses.create({
          model: 'gpt-4o-mini',
+         instructions,
          input: prompt,
          temperature: 0.2,
          max_output_tokens: 200,
